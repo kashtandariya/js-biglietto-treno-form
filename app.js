@@ -48,4 +48,24 @@ buttonElement.addEventListener("click", function() {
     console.log(price.toFixed(2)) //stringa | null
 
     resultElement.innerHTML = "Prezzo finale " + price + "€"
+    resultElement.innerHTML = `
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Km</th>
+        <th>Age</th>
+        <th>sconto</th>
+        <th>price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${km} km</td>
+        <td>${age}</td>
+        <td>${sconto}€ </td>
+        <td>${price} €</td>
+      </tr>
+    </tbody>
+  </table>
+  `
 })
