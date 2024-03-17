@@ -9,24 +9,43 @@
 //ALTRIMENTI non ha nessuno sconto
 //prezzo finale è prezzo base - sconto (se c'è)
 
-const pricePerKm = 0.21
+const buttonElement = document.getElementById("submit")
+console.log(buttonElement)
 
-const km = parseInt(prompt ("Quanti km vuoi percorrere?"));
-console.log(km, typeof km)
 
-const eta = parseInt(prompt ("Quanti anni hai?"))
-console.log(eta, typeof eta)
+// recupera elementi del dom fuori dall'event listener
+const kmElement = document.getElementById("km")
+console.dir(kmElement)
 
-let prezzoBase = km * pricePerKm
-console.log(prezzoBase)
+const ageElement = document.getElementById("age")
+console.dir(ageElement)
 
-let sconto = 0
+const resultElement = document.getElementById("result")
+console.dir(resultElement)
 
-if (eta < 18) {
+buttonElement.addEventListener("click", function() {
+    console.log("click")
+
+    const km = parseInt(kmElement.value) //string!!! fai parseInt o metti il + davanti che trasforma in numero
+    console.log(km)
+
+    const age = parseInt(ageElement.value)
+    console.log(age)
+
+    const pricePerKm = 0.21
+    const prezzoBase = km *pricePerKm
+    console.log(prezzoBase)
+     
+    let sconto = 0
+    
+    if (age < 18) {
     sconto = 0.2
-} else if (eta > 65) {
+    } else if (age > 65) {
     sconto = 0.4
-}
+    }
 
-let price = prezzoBase - prezzoBase * sconto 
-console.log(price.toFixed(2)) //stringa | null
+    let price = prezzoBase - prezzoBase * sconto 
+    console.log(price.toFixed(2)) //stringa | null
+
+    resultElement.innerHTML = "Prezzo finale " + price + "€"
+})
