@@ -9,18 +9,17 @@
 //ALTRIMENTI non ha nessuno sconto
 //prezzo finale è prezzo base - sconto (se c'è)
 
-const buttonElement = document.getElementById("submit")
+const buttonElement = document.getElementById("submit");
 console.log(buttonElement)
 
-
 // recupera elementi del dom fuori dall'event listener
-const kmElement = document.getElementById("km")
+const kmElement = document.getElementById("km");
 console.dir(kmElement)
 
-const ageElement = document.getElementById("age")
-console.dir(ageElement)
+const selectElement = document.getElementById("age");
+console.dir(selectElement)
 
-const resultElement = document.getElementById("result")
+const resultElement = document.getElementById("result");
 console.dir(resultElement)
 
 buttonElement.addEventListener("click", function() {
@@ -29,7 +28,7 @@ buttonElement.addEventListener("click", function() {
     const km = parseInt(kmElement.value) //string!!! fai parseInt o metti il + davanti che trasforma in numero
     console.log(km)
 
-    const age = parseInt(ageElement.value)
+    const age = parseInt(selectElement.value)
     console.log(age)
 
     const pricePerKm = 0.21
@@ -37,17 +36,20 @@ buttonElement.addEventListener("click", function() {
     console.log(prezzoBase)
      
     let sconto = 0
-    
-    if (age < 18) {
-    sconto = 0.2
-    } else if (age > 65) {
-    sconto = 0.4
-    }
 
-    let price = prezzoBase - prezzoBase * sconto 
+      if (age === 'Minorenne') {
+          sconto = 0.2;
+      } else if (age === 'Over65') {
+          sconto = 0.4;
+      } else {
+          sconto = 0;
+      }
+
+    const price = prezzoBase - prezzoBase * sconto 
     console.log(price.toFixed(2)) //stringa | null
+  });
 
-    resultElement.innerHTML = "Prezzo finale " + price + "€"
+    resultElement.innerHTML = "Il prezzo del biglitto è" + pricetoFixed(2) + "&euro;"
     resultElement.innerHTML = `
   <table class="table">
     <thead>
@@ -68,4 +70,3 @@ buttonElement.addEventListener("click", function() {
     </tbody>
   </table>
   `
-})
